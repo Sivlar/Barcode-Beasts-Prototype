@@ -4,7 +4,16 @@
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<style></style>
+	
+	<style>
+		img {
+			max-height: 75px;
+			max-width: 75px;
+			text-align: center;
+			margin: 0 auto;
+			margin-top: 2px;
+		}
+	</style>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -15,15 +24,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
+	<script type="text/javascript" src="beasts.js"></script>
 	<script type="text/javascript">
 		$(window).on('load', function () {
 			$('#beastSelection').modal('show');
 		});
-	</script>
 
-	<script type="text/javascript" src="beasts.js"></script>
-	<script type="text/javascript">
 		function init() {
 			var beasts = DATA;
 			var selectors = document.querySelectorAll("select");
@@ -66,14 +72,14 @@
 
 				switch (i) {
 					case 0:
-						img = document.querySelector('#player1Beast1Img');
-						maxHp = document.querySelector('#maxHpP1B1')
-						currentHp = document.querySelector('#currentHpP1B1');
-						currentPrs = document.querySelector('#currentPrsP1B1');
-						maxPrs = document.querySelector('#maxPrsP1B1');
-						atk = document.querySelector('#currentAtkP1B1');
-						def = document.querySelector('#currentDefP1B1');
-						spd = document.querySelector('#currentSpdP1B1');
+						img = document.querySelector('#player1Beast3Img');
+						maxHp = document.querySelector('#maxHpP1B3')
+						currentHp = document.querySelector('#currentHpP1B3');
+						currentPrs = document.querySelector('#currentPrsP1B3');
+						maxPrs = document.querySelector('#maxPrsP1B3');
+						atk = document.querySelector('#currentAtkP1B3');
+						def = document.querySelector('#currentDefP1B3');
+						spd = document.querySelector('#currentSpdP1B3');
 						break;
 					case 1:
 						img = document.querySelector('#player1Beast2Img');
@@ -86,14 +92,14 @@
 						spd = document.querySelector('#currentSpdP1B2');
 						break;
 					case 2:
-						img = document.querySelector('#player1Beast3Img');
-						maxHp = document.querySelector('#maxHpP1B3')
-						currentHp = document.querySelector('#currentHpP1B3');
-						currentPrs = document.querySelector('#currentPrsP1B3');
-						maxPrs = document.querySelector('#maxPrsP1B3');
-						atk = document.querySelector('#currentAtkP1B3');
-						def = document.querySelector('#currentDefP1B3');
-						spd = document.querySelector('#currentSpdP1B3');
+						img = document.querySelector('#player1Beast1Img');
+						maxHp = document.querySelector('#maxHpP1B1')
+						currentHp = document.querySelector('#currentHpP1B1');
+						currentPrs = document.querySelector('#currentPrsP1B1');
+						maxPrs = document.querySelector('#maxPrsP1B1');
+						atk = document.querySelector('#currentAtkP1B1');
+						def = document.querySelector('#currentDefP1B1');
+						spd = document.querySelector('#currentSpdP1B1');
 						break;
 					case 3:
 						img = document.querySelector('#player2Beast1Img');
@@ -138,6 +144,7 @@
 				spd.value = beast.SPD;
 			}
 		}
+
 		window.onload = init;
 	</script>
 </head>
@@ -177,9 +184,8 @@
 		</div>
 	</div>
 
-
 	<div id="player1">
-		<div class="row">
+		<div class="row col-12 d-flex justify-content-center">
 			<div class="card" id="player1Beast1">
 				<img class="card-img-top" id="player1Beast1Img" src="" />
 				<div class="card-body">
@@ -225,7 +231,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row col-12 d-flex justify-content-center">
 			<div class="card" id="player1Beast3">
 				<img class="card-img-top" id="player1Beast3Img" src="" />
 				<div class="card-body">
@@ -250,9 +256,9 @@
 			</div>
 		</div>
 	</div>
-	<hr />
+
 	<div id="player2">
-		<div class="row">
+		<div class="row col-12 d-flex justify-content-center">
 			<div class="card" id="player2Beast1">
 				<img class="card-img-top" id="player2Beast1Img" src="" />
 				<div class="card-body">
@@ -276,7 +282,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row col-12 d-flex justify-content-center">
 			<div class="card" id="player2Beast2">
 				<img class="card-img-top" id="player2Beast2Img" src="" />
 				<div class="card-body">
