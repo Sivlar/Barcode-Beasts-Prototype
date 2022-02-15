@@ -2,105 +2,323 @@
 <html>
 
 <head>
-	<style>
-		.player {
-			margin: 0 auto;
-			text-align: center;
-		}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style></style>
 
-		.beast {
-			display: inline-block;
-			margin: 4px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-			transition: 0.3s;
-			border-radius: 5px;
-			width: 250px;
-		}
-
-		.beast:hover {
-			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-		}
-
-		.stats {
-			padding: 2px 16px;
-		}
-	</style>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
-		
+		$(window).on('load', function () {
+			$('#beastSelection').modal('show');
+		});
+	</script>
+
+	<script type="text/javascript" src="beasts.js"></script>
+	<script type="text/javascript">
+		function init() {
+			var beasts = DATA;
+			var selectors = document.querySelectorAll("select");
+
+			selectors.forEach(x => {
+				var option = document.createElement("option");
+				option.innerHTML = "--Select a Beast--";
+				option.value = 0;
+				x.appendChild(option);
+
+				beasts.forEach(b => {
+					option = document.createElement("option");
+					option.value = b.Name;
+					option.innerHTML = b.Name;
+
+					x.appendChild(option);
+				});
+			});
+		}
+
+		function getLineup() {
+			const arr = [
+				document.querySelector('#player1Beast1').value,
+				document.querySelector('#player1Beast2').value,
+				document.querySelector('#player1Beast3').value,
+				document.querySelector('#player2Beast1').value,
+				document.querySelector('#player2Beast2').value,
+				document.querySelector('#player2Beast3').value
+			]
+			return arr;
+		}
+
+		function startGame() {
+			const arr = getLineup();
+			var beast;
+
+			for (let i = 0; i <= 5; i++) {
+				beast = DATA.find(x => x.Name === arr[i]);
+				var img, maxHp, currentHp, currentPrs, maxPrs, atk, def, spd;
+
+				switch (i) {
+					case 0:
+						img = document.querySelector('#player1Beast1Img');
+						maxHp = document.querySelector('#maxHpP1B1')
+						currentHp = document.querySelector('#currentHpP1B1');
+						currentPrs = document.querySelector('#currentPrsP1B1');
+						maxPrs = document.querySelector('#maxPrsP1B1');
+						atk = document.querySelector('#currentAtkP1B1');
+						def = document.querySelector('#currentDefP1B1');
+						spd = document.querySelector('#currentSpdP1B1');
+						break;
+					case 1:
+						img = document.querySelector('#player1Beast2Img');
+						maxHp = document.querySelector('#maxHpP1B2')
+						currentHp = document.querySelector('#currentHpP1B2');
+						currentPrs = document.querySelector('#currentPrsP1B2');
+						maxPrs = document.querySelector('#maxPrsP1B2');
+						atk = document.querySelector('#currentAtkP1B2');
+						def = document.querySelector('#currentDefP1B2');
+						spd = document.querySelector('#currentSpdP1B2');
+						break;
+					case 2:
+						img = document.querySelector('#player1Beast3Img');
+						maxHp = document.querySelector('#maxHpP1B3')
+						currentHp = document.querySelector('#currentHpP1B3');
+						currentPrs = document.querySelector('#currentPrsP1B3');
+						maxPrs = document.querySelector('#maxPrsP1B3');
+						atk = document.querySelector('#currentAtkP1B3');
+						def = document.querySelector('#currentDefP1B3');
+						spd = document.querySelector('#currentSpdP1B3');
+						break;
+					case 3:
+						img = document.querySelector('#player2Beast1Img');
+						maxHp = document.querySelector('#maxHpP2B1')
+						currentHp = document.querySelector('#currentHpP2B1');
+						currentPrs = document.querySelector('#currentPrsP2B1');
+						maxPrs = document.querySelector('#maxPrsP2B1');
+						atk = document.querySelector('#currentAtkP2B1');
+						def = document.querySelector('#currentDefP2B1');
+						spd = document.querySelector('#currentSpdP2B1');
+						break;
+					case 4:
+						img = document.querySelector('#player2Beast2Img');
+						maxHp = document.querySelector('#maxHpP2B2')
+						currentHp = document.querySelector('#currentHpP2B2');
+						currentPrs = document.querySelector('#currentPrsP2B2');
+						maxPrs = document.querySelector('#maxPrsP2B2');
+						atk = document.querySelector('#currentAtkP2B2');
+						def = document.querySelector('#currentDefP2B2');
+						spd = document.querySelector('#currentSpdP2B2');
+						break;
+					case 5:
+						img = document.querySelector('#player2Beast3Img');
+						maxHp = document.querySelector('#maxHpP2B3')
+						currentHp = document.querySelector('#currentHpP2B3');
+						currentPrs = document.querySelector('#currentPrsP2B3');
+						maxPrs = document.querySelector('#maxPrsP2B3');
+						atk = document.querySelector('#currentAtkP2B3');
+						def = document.querySelector('#currentDefP2B3');
+						spd = document.querySelector('#currentSpdP2B3');
+						break;
+					default:
+				}
+
+				img.src = beast.Img;
+				maxHp.value = beast.HP;
+				currentHp.value = maxHp.value;
+				currentPrs.value = 0;
+				maxPrs.value = 10;
+				atk.value = beast.ATK;
+				def.value = beast.DEF;
+				spd.value = beast.SPD;
+			}
+		}
+		window.onload = init;
 	</script>
 </head>
 
 <body>
-	<div class="player">
-		<div class="row">
-			<div class="beast">
-				<img src="./img/Graveltusk.png">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+	<!-- Modal -->
+	<div class="modal fade" id="beastSelection" tabindex="-1" role="dialog" aria-labelledby="beastSelectionCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="beastSelectionLongTitle">Choose your beasts!</h5>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col text-center" id="player1Beasts">
+							<h5>Player 1 Beasts</h5>
+							<select id="player1Beast1"></select>
+							<select id="player1Beast2"></select>
+							<select id="player1Beast3"></select>
+						</div>
+						<div class="col text-center" id="player2Beasts">
+							<h5>Player 2 Beasts</h5>
+							<select id="player2Beast1"></select>
+							<select id="player2Beast2"></select>
+							<select id="player2Beast3"></select>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="startGame" onclick="startGame()"
+						data-dismiss="modal">Confirm
+						selection</button>
 				</div>
 			</div>
-			<div class="beast">
-				<img src="./img/Granolafly.png">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+		</div>
+	</div>
+
+
+	<div id="player1">
+		<div class="row">
+			<div class="card" id="player1Beast1">
+				<img class="card-img-top" id="player1Beast1Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP1B1" type="number" min="0" max="99" /> / <input id="maxHpP1B1"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP1B1" type="number" min="0" max="99" /> / <input id="maxPrsP1B1"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP1B1" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP1B1" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP1B1" type="number" min="0" max="99" />
+					</div>
+				</div>
+			</div>
+			<div class="card" id="player1Beast2">
+				<img class="card-img-top" id="player1Beast2Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP1B2" type="number" min="0" max="99" /> / <input id="maxHpP1B2"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP1B2" type="number" min="0" max="99" /> / <input id="maxPrsP1B2"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP1B2" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP1B2" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP1B2" type="number" min="0" max="99" />
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="beast">
-				<img src="./img/EarthTank.jpg" height="160" width="160">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+			<div class="card" id="player1Beast3">
+				<img class="card-img-top" id="player1Beast3Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP1B3" type="number" min="0" max="99" /> / <input id="maxHpP1B3"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP1B3" type="number" min="0" max="99" /> / <input id="maxPrsP1B3"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP1B3" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP1B3" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP1B3" type="number" min="0" max="99" />
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<hr />
-	<div class="player">
+	<div id="player2">
 		<div class="row">
-			<div class="beast">
-				<img src="./img/BlindingBeetle.png">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+			<div class="card" id="player2Beast1">
+				<img class="card-img-top" id="player2Beast1Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP2B1" type="number" min="0" max="99" /> / <input id="maxHpP2B1"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP2B1" type="number" min="0" max="99" /> / <input id="maxPrsP2B1"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP2B1" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP2B1" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP2B1" type="number" min="0" max="99" />
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="beast">
-				<img src="./img/Winja.png">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+			<div class="card" id="player2Beast2">
+				<img class="card-img-top" id="player2Beast2Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP2B2" type="number" min="0" max="99" /> / <input id="maxHpP2B2"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP2B2" type="number" min="0" max="99" /> / <input id="maxPrsP2B2"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP2B2" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP2B2" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP2B2" type="number" min="0" max="99" />
+					</div>
 				</div>
 			</div>
-			<div class="beast">
-				<img src="./img/Bellowsoar.png">
-				<div class="stats">
-					<div>HP: <input type="number" min="0" max="99" /> / <input type="number" min="0" max="99" /></div>
-					<div>PRS: <input type="number" min="0" max="10" /> / <input type="number" min="0" max="10" /></div>
-					<div>ATK: <input type="number" min="0" max="99" /></div>
-					<div>DEF: <input type="number" min="0" max="99" /></div>
-					<div>SPD: <input type="number" min="0" max="99" /></div>
+			<div class="card" id="player2Beast3">
+				<img class="card-img-top" id="player2Beast3Img" src="" />
+				<div class="card-body">
+					<div>
+						HP: <input id="currentHpP2B3" type="number" min="0" max="99" /> / <input id="maxHpP2B3"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						PRS: <input id="currentPrsP2B3" type="number" min="0" max="99" /> / <input id="maxPrsP2B3"
+							type="number" min="0" max="99" />
+					</div>
+					<div>
+						ATK: <input id="currentAtkP2B3" type="number" min="0" max="99" />
+					</div>
+					<div>
+						DEF: <input id="currentDefP2B3" type="number" min="0" max="99" />
+					</div>
+					<div>
+						SPD: <input id="currentSpdP2B3" type="number" min="0" max="99" />
+					</div>
 				</div>
 			</div>
 		</div>
