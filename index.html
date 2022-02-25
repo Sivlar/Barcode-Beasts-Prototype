@@ -30,9 +30,10 @@
 
 		$(window).on('load', function() {
 			$('#beastSelection').modal('show');
+			populateBeastSelectors();
 		});
 
-		function init() {
+		function populateBeastSelectors() {
 			var beasts = DATA;
 			var selectors = document.querySelectorAll("select");
 
@@ -52,7 +53,7 @@
 			});
 		}
 
-		function getLineup() {
+		function loadSelectedBeasts() {
 			const arr = [
 				document.querySelector('#player1Beast1').value,
 				document.querySelector('#player1Beast2').value,
@@ -60,12 +61,12 @@
 				document.querySelector('#player2Beast1').value,
 				document.querySelector('#player2Beast2').value,
 				document.querySelector('#player2Beast3').value
-			]
+			];
 			return arr;
 		}
 
 		function startGame() {
-			const arr = getLineup();
+			const arr = loadSelectedBeasts();
 			var beast;
 
 			for (let i = 0; i <= 5; i++) {
@@ -172,7 +173,9 @@
 			coin.innerHTML = randNum === 1 ? "Heads" : "Tails";
 		}
 
-		window.onload = init;
+		function passTurn() {
+
+		}
 	</script>
 </head>
 
