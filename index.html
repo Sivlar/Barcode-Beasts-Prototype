@@ -2,9 +2,6 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
 	<style>
 		img {
 			max-height: 75px;
@@ -15,6 +12,10 @@
 		}
 	</style>
 
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
@@ -24,17 +25,22 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+
+	<!--Import Beast Data-->
 	<script type="text/javascript" src="beasts.js"></script>
+
+	<!--Main Logic-->
 	<script type="text/javascript">
 		var atk = 0;
+		var beasts;
 
-		$(window).on('load', function() {
+		$(window).on('load', function () {
 			$('#beastSelection').modal('show');
 			populateBeastSelectors();
 		});
 
 		function populateBeastSelectors() {
-			var beasts = DATA;
+			var beastData = DATA;
 			var selectors = document.querySelectorAll("select");
 
 			selectors.forEach(x => {
@@ -43,7 +49,7 @@
 				option.value = 0;
 				x.appendChild(option);
 
-				beasts.forEach(b => {
+				beastData.forEach(b => {
 					option = document.createElement("option");
 					option.value = b.Name;
 					option.innerHTML = b.Name;
@@ -53,7 +59,7 @@
 			});
 		}
 
-		function loadSelectedBeasts() {
+		function getSelectedBeastNamesFromModal() {
 			const arr = [
 				document.querySelector('#player1Beast1').value,
 				document.querySelector('#player1Beast2').value,
@@ -65,12 +71,12 @@
 			return arr;
 		}
 
-		function startGame() {
-			const arr = loadSelectedBeasts();
-			var beast;
+		function mapBeastsToElementsByName() {
+			const arrOfNames = getSelectedBeastNamesFromModal();
+			var currentBeast;
 
 			for (let i = 0; i <= 5; i++) {
-				beast = DATA.find(x => x.Name === arr[i]);
+				currentBeast = DATA.find(x => x.Name === arrOfNames[i]);
 				var img, maxHp, currentHp, currentPrs, maxPrs, atk, def, spd;
 
 				switch (i) {
@@ -137,25 +143,47 @@
 					default:
 				}
 
-				img.src = beast.Img;
-				maxHp.value = beast.HP;
+				img.src = currentBeast.Img;
+				maxHp.value = currentBeast.HP;
 				currentHp.value = maxHp.value;
 				currentPrs.value = 0;
 				maxPrs.value = 10;
-				atk.value = beast.ATK;
-				def.value = beast.DEF;
-				spd.value = beast.SPD;
+				atk.value = currentBeast.ATK;
+				def.value = currentBeast.DEF;
+				spd.value = currentBeast.SPD;
 			}
 		}
 
+		function startGame() {
+			mapBeastsToElementsByName();
+			document.querySelector('#round').value = 1;// Start at round 1.
+			determineTurnOrderForRound();
+			passTurn();
+		}
+
+		function determineTurnOrderForRound() {
+			beast0 = {name: "Beast0", spd: 5};
+			beast1 = {name: "Beast1", spd: 1};
+			beast2 = {name: "Beast2", spd: 2};
+			beast3 = {name: "Beast3", spd: 3};
+			beast4 = {name: "Beast4", spd: 4};
+			beast5 = {name: "Beast5", spd: 5};
+			
+			let beasts = [beast0, beast1, beast2, beast3, beast4, beast5];
+
+			console.log(beasts);
+			beasts.sort((x, y) => parseFloat(y.spd) - parseFloat(x.spd));
+			console.log(beasts);
+		}
+
 		function setAtk(atkElemId) {
-			atk = document.querySelector('#'+atkElemId).value;
+			atk = document.querySelector('#' + atkElemId).value;
 			console.log("Attack Set: " + atk);
 		}
 
 		function defend(defElemId, currHpElemId) {
-			var def = document.querySelector('#'+defElemId).value;
-			var hpElem = document.querySelector('#'+currHpElemId);
+			var def = document.querySelector('#' + defElemId).value;
+			var hpElem = document.querySelector('#' + currHpElemId);
 
 			console.log("Defense Set: " + def);
 			console.log("Attacking...");
@@ -186,7 +214,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="beastSelectionLongTitle">Choose your beasts!</h5>
+					<h5 class="modal-title" id="beastSelectionLongTitle">Choose your Beasts!</h5>
 					</button>
 				</div>
 				<div class="modal-body">
@@ -207,8 +235,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="startGame" onclick="startGame()"
-						data-dismiss="modal">Confirm
-						selection</button>
+						data-dismiss="modal">Confirm</button>
 				</div>
 			</div>
 		</div>
@@ -236,7 +263,8 @@
 					<div>
 						SPD: <input id="currentSpdP1B1" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP1B1')">ATK</button><button onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP1B1')">ATK</button><button
+							onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button></div>
 				</div>
 			</div>
 			<div class="card" id="player1Beast2">
@@ -259,7 +287,8 @@
 					<div>
 						SPD: <input id="currentSpdP1B2" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP1B2')">ATK</button><button onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP1B2')">ATK</button><button
+							onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button></div>
 				</div>
 			</div>
 		</div>
@@ -284,7 +313,8 @@
 					<div>
 						SPD: <input id="currentSpdP1B3" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP1B3')">ATK</button><button onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP1B3')">ATK</button><button
+							onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button></div>
 				</div>
 			</div>
 		</div>
@@ -312,7 +342,8 @@
 					<div>
 						SPD: <input id="currentSpdP2B1" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP2B1')">ATK</button><button onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP2B1')">ATK</button><button
+							onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button></div>
 				</div>
 			</div>
 		</div>
@@ -337,7 +368,8 @@
 					<div>
 						SPD: <input id="currentSpdP2B2" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP2B2')">ATK</button><button onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP2B2')">ATK</button><button
+							onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button></div>
 				</div>
 			</div>
 			<div class="card" id="player2Beast3">
@@ -360,13 +392,16 @@
 					<div>
 						SPD: <input id="currentSpdP2B3" type="number" min="0" max="99" />
 					</div>
-					<div><button onclick="setAtk('currentAtkP2B3')">ATK</button><button onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button></div>
+					<div><button onclick="setAtk('currentAtkP2B3')">ATK</button><button
+							onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button></div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span>
+	<div><input type="number" id="round" min="1" max="100"></div>
+	<br />
+	<div><button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span></div>
 </body>
 
 </html>
