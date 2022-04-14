@@ -1,0 +1,25 @@
+{
+  "name": "barcode-beasts-prototype",
+  "version": "0.1.0",
+  "description": "A lightweight web app used to playtest the battle portion of Barcode Beasts",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sivlar/Barcode-Beasts-Prototype.git"
+  },
+  "author": "Todd Facemyer",
+  "bugs": {
+    "url": "https://github.com/Sivlar/Barcode-Beasts-Prototype/issues"
+  },
+  "homepage": "https://github.com/Sivlar/Barcode-Beasts-Prototype#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1"
+  }
+}

@@ -7,10 +7,20 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
+            "name": "Chrome",
+            "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}",
-            "file": "${workspaceFolder}/index.html"
+            // "file": "${workspaceFolder}/client/index.html"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal",
+            "program": "${workspaceFolder}\\server.js"
         }
     ]
 }
