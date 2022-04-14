@@ -1,0 +1,30 @@
+img.mainBeastImg {
+    max-height: 75px;
+    max-width: 75px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#turnTracker {
+    height: 100%;
+    width: 130px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    text-align: center;
+    /* padding-top: 10px; */
+    background-color: rgb(160, 160, 160);
+}
+
+#turnTracker img {
+    width: 116px;
+    height: 116px;
+    margin: 5px auto;
+    border-style: solid;
+}
+
+#main {
+    /* Same as the width of the sidenav */
+    margin-left: 130px;
+}

@@ -2,16 +2,6 @@
 <html>
 
 <head>
-	<style>
-		img {
-			max-height: 75px;
-			max-width: 75px;
-			text-align: center;
-			margin: 0 auto;
-			margin-top: 2px;
-		}
-	</style>
-
 	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -26,185 +16,11 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 
-	<!--Import Beast Data-->
-	<script type="text/javascript" src="beasts.js"></script>
+	<!--Import CSS-->
+	<link rel="stylesheet" type="text/css" href="./index.css">
 
 	<!--Main Logic-->
-	<script type="text/javascript">
-		var atk = 0;
-		var beasts;
-
-		$(window).on('load', function () {
-			$('#beastSelection').modal('show');
-			populateBeastSelectors();
-		});
-
-		function populateBeastSelectors() {
-			var beastData = DATA;
-			var selectors = document.querySelectorAll("select");
-
-			selectors.forEach(x => {
-				var option = document.createElement("option");
-				option.innerHTML = "--Select a Beast--";
-				option.value = 0;
-				x.appendChild(option);
-
-				beastData.forEach(b => {
-					option = document.createElement("option");
-					option.value = b.Name;
-					option.innerHTML = b.Name;
-
-					x.appendChild(option);
-				});
-			});
-		}
-
-		function getSelectedBeastNamesFromModal() {
-			const arr = [
-				document.querySelector('#player1Beast1').value,
-				document.querySelector('#player1Beast2').value,
-				document.querySelector('#player1Beast3').value,
-				document.querySelector('#player2Beast1').value,
-				document.querySelector('#player2Beast2').value,
-				document.querySelector('#player2Beast3').value
-			];
-			return arr;
-		}
-
-		function mapBeastsToElementsByName() {
-			const arrOfNames = getSelectedBeastNamesFromModal();
-			var currentBeast;
-
-			for (let i = 0; i <= 5; i++) {
-				currentBeast = DATA.find(x => x.Name === arrOfNames[i]);
-				var img, maxHp, currentHp, currentPrs, maxPrs, atk, def, spd;
-
-				switch (i) {
-					case 0:
-						img = document.querySelector('#player1Beast3Img');
-						maxHp = document.querySelector('#maxHpP1B3')
-						currentHp = document.querySelector('#currentHpP1B3');
-						currentPrs = document.querySelector('#currentPrsP1B3');
-						maxPrs = document.querySelector('#maxPrsP1B3');
-						atk = document.querySelector('#currentAtkP1B3');
-						def = document.querySelector('#currentDefP1B3');
-						spd = document.querySelector('#currentSpdP1B3');
-						break;
-					case 1:
-						img = document.querySelector('#player1Beast2Img');
-						maxHp = document.querySelector('#maxHpP1B2')
-						currentHp = document.querySelector('#currentHpP1B2');
-						currentPrs = document.querySelector('#currentPrsP1B2');
-						maxPrs = document.querySelector('#maxPrsP1B2');
-						atk = document.querySelector('#currentAtkP1B2');
-						def = document.querySelector('#currentDefP1B2');
-						spd = document.querySelector('#currentSpdP1B2');
-						break;
-					case 2:
-						img = document.querySelector('#player1Beast1Img');
-						maxHp = document.querySelector('#maxHpP1B1')
-						currentHp = document.querySelector('#currentHpP1B1');
-						currentPrs = document.querySelector('#currentPrsP1B1');
-						maxPrs = document.querySelector('#maxPrsP1B1');
-						atk = document.querySelector('#currentAtkP1B1');
-						def = document.querySelector('#currentDefP1B1');
-						spd = document.querySelector('#currentSpdP1B1');
-						break;
-					case 3:
-						img = document.querySelector('#player2Beast1Img');
-						maxHp = document.querySelector('#maxHpP2B1')
-						currentHp = document.querySelector('#currentHpP2B1');
-						currentPrs = document.querySelector('#currentPrsP2B1');
-						maxPrs = document.querySelector('#maxPrsP2B1');
-						atk = document.querySelector('#currentAtkP2B1');
-						def = document.querySelector('#currentDefP2B1');
-						spd = document.querySelector('#currentSpdP2B1');
-						break;
-					case 4:
-						img = document.querySelector('#player2Beast2Img');
-						maxHp = document.querySelector('#maxHpP2B2')
-						currentHp = document.querySelector('#currentHpP2B2');
-						currentPrs = document.querySelector('#currentPrsP2B2');
-						maxPrs = document.querySelector('#maxPrsP2B2');
-						atk = document.querySelector('#currentAtkP2B2');
-						def = document.querySelector('#currentDefP2B2');
-						spd = document.querySelector('#currentSpdP2B2');
-						break;
-					case 5:
-						img = document.querySelector('#player2Beast3Img');
-						maxHp = document.querySelector('#maxHpP2B3')
-						currentHp = document.querySelector('#currentHpP2B3');
-						currentPrs = document.querySelector('#currentPrsP2B3');
-						maxPrs = document.querySelector('#maxPrsP2B3');
-						atk = document.querySelector('#currentAtkP2B3');
-						def = document.querySelector('#currentDefP2B3');
-						spd = document.querySelector('#currentSpdP2B3');
-						break;
-					default:
-				}
-
-				img.src = currentBeast.Img;
-				maxHp.value = currentBeast.HP;
-				currentHp.value = maxHp.value;
-				currentPrs.value = 0;
-				maxPrs.value = 10;
-				atk.value = currentBeast.ATK;
-				def.value = currentBeast.DEF;
-				spd.value = currentBeast.SPD;
-			}
-		}
-
-		function startGame() {
-			mapBeastsToElementsByName();
-			document.querySelector('#round').value = 1;// Start at round 1.
-			determineTurnOrderForRound();
-			passTurn();
-		}
-
-		function determineTurnOrderForRound() {
-			beast0 = {name: "Beast0", spd: 5};
-			beast1 = {name: "Beast1", spd: 1};
-			beast2 = {name: "Beast2", spd: 2};
-			beast3 = {name: "Beast3", spd: 3};
-			beast4 = {name: "Beast4", spd: 4};
-			beast5 = {name: "Beast5", spd: 5};
-			
-			let beasts = [beast0, beast1, beast2, beast3, beast4, beast5];
-
-			console.log(beasts);
-			beasts.sort((x, y) => parseFloat(y.spd) - parseFloat(x.spd));
-			console.log(beasts);
-		}
-
-		function setAtk(atkElemId) {
-			atk = document.querySelector('#' + atkElemId).value;
-			console.log("Attack Set: " + atk);
-		}
-
-		function defend(defElemId, currHpElemId) {
-			var def = document.querySelector('#' + defElemId).value;
-			var hpElem = document.querySelector('#' + currHpElemId);
-
-			console.log("Defense Set: " + def);
-			console.log("Attacking...");
-
-			var damage = parseInt(atk) * parseInt(atk) / (parseInt(atk) + parseInt(def));
-			var damageRounded = Math.round(damage);
-			console.log("Damage: " + damage + " (rounded to " + damageRounded + ")");
-
-			hpElem.value -= damageRounded;
-		}
-
-		function flipCoin() {
-			var coin = document.querySelector('#coinResult');
-			var randNum = Math.floor(Math.random() * (2 - 1 + 1) + 1);//Random number between 1 and 2.
-			coin.innerHTML = randNum === 1 ? "Heads" : "Tails";
-		}
-
-		function passTurn() {
-
-		}
-	</script>
+	<script type="text/javascript" src="index.js"></script>
 </head>
 
 <body>
@@ -221,7 +37,7 @@
 					<div class="row">
 						<div class="col text-center" id="player1Beasts">
 							<h5>Player 1 Beasts</h5>
-							<select id="player1Beast1"></select>
+							<select id="player1Beast1"></select><!-- TODO Conflicting ID in other parts of the code? -->
 							<select id="player1Beast2"></select>
 							<select id="player1Beast3"></select>
 						</div>
@@ -234,6 +50,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" id="randBeast"
+						onclick="chooseRandomBeasts()">Random</button>
 					<button type="button" class="btn btn-primary" id="startGame" onclick="startGame()"
 						data-dismiss="modal">Confirm</button>
 				</div>
@@ -241,167 +59,184 @@
 		</div>
 	</div>
 
-	<div id="player1">
-		<div class="row col-12 d-flex justify-content-center">
-			<div class="card" id="player1Beast1">
-				<img class="card-img-top" id="player1Beast1Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP1B1" type="number" min="0" max="99" /> / <input id="maxHpP1B1"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						PRS: <input id="currentPrsP1B1" type="number" min="0" max="99" /> / <input id="maxPrsP1B1"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						ATK: <input id="currentAtkP1B1" type="number" min="0" max="99" />
-					</div>
-					<div>
-						DEF: <input id="currentDefP1B1" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP1B1" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP1B1')">ATK</button><button
-							onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button></div>
-				</div>
-			</div>
-			<div class="card" id="player1Beast2">
-				<img class="card-img-top" id="player1Beast2Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP1B2" type="number" min="0" max="99" /> / <input id="maxHpP1B2"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						PRS: <input id="currentPrsP1B2" type="number" min="0" max="99" /> / <input id="maxPrsP1B2"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						ATK: <input id="currentAtkP1B2" type="number" min="0" max="99" />
-					</div>
-					<div>
-						DEF: <input id="currentDefP1B2" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP1B2" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP1B2')">ATK</button><button
-							onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button></div>
-				</div>
-			</div>
-		</div>
-		<div class="row col-12 d-flex justify-content-center">
-			<div class="card" id="player1Beast3">
-				<img class="card-img-top" id="player1Beast3Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP1B3" type="number" min="0" max="99" /> / <input id="maxHpP1B3"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						PRS: <input id="currentPrsP1B3" type="number" min="0" max="99" /> / <input id="maxPrsP1B3"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						ATK: <input id="currentAtkP1B3" type="number" min="0" max="99" />
-					</div>
-					<div>
-						DEF: <input id="currentDefP1B3" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP1B3" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP1B3')">ATK</button><button
-							onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button></div>
-				</div>
-			</div>
-		</div>
+	<div id="turnTracker">
+		<img id="beast0" onmouseover="highlightBeast()" onmouseout="removeHightlight()" data-id="test1"></img>
+		<img id="beast1" onmouseover="" onmouseout=""></img>
+		<img id="beast2" onmouseover="" onmouseout=""></img>
+		<img id="beast3" onmouseover="" onmouseout=""></img>
+		<img id="beast4" onmouseover="" onmouseout=""></img>
+		<img id="beast5" onmouseover="" onmouseout=""></img>
 	</div>
 
-	<div id="player2">
-		<div class="row col-12 d-flex justify-content-center">
-			<div class="card" id="player2Beast1">
-				<img class="card-img-top" id="player2Beast1Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP2B1" type="number" min="0" max="99" /> / <input id="maxHpP2B1"
-							type="number" min="0" max="99" />
+	<!-- Game Board -->
+	<div id="main">
+		<div id="player1">
+			<div class="row col-12 d-flex justify-content-center">
+				<div class="card" id="player1Beast1">
+					<img class="card-img-top mainBeastImg" id="player1Beast1Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP1B1" type="number" min="0" max="99" /> / <input id="maxHpP1B1"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP1B1" type="number" min="0" max="99" /> / <input id="maxPrsP1B1"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP1B1" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP1B1" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP1B1" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP1B1')">ATK</button><button
+								onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button></div>
 					</div>
-					<div>
-						PRS: <input id="currentPrsP2B1" type="number" min="0" max="99" /> / <input id="maxPrsP2B1"
-							type="number" min="0" max="99" />
+				</div>
+				<div class="card" id="player1Beast2">
+					<img class="card-img-top mainBeastImg" id="player1Beast2Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP1B2" type="number" min="0" max="99" /> / <input id="maxHpP1B2"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP1B2" type="number" min="0" max="99" /> / <input id="maxPrsP1B2"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP1B2" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP1B2" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP1B2" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP1B2')">ATK</button><button
+								onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button></div>
 					</div>
-					<div>
-						ATK: <input id="currentAtkP2B1" type="number" min="0" max="99" />
+				</div>
+			</div>
+			<div class="row col-12 d-flex justify-content-center">
+				<div class="card" id="player1Beast3">
+					<img class="card-img-top mainBeastImg" id="player1Beast3Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP1B3" type="number" min="0" max="99" /> / <input id="maxHpP1B3"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP1B3" type="number" min="0" max="99" /> / <input id="maxPrsP1B3"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP1B3" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP1B3" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP1B3" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP1B3')">ATK</button><button
+								onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button></div>
 					</div>
-					<div>
-						DEF: <input id="currentDefP2B1" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP2B1" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP2B1')">ATK</button><button
-							onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button></div>
 				</div>
 			</div>
 		</div>
-		<div class="row col-12 d-flex justify-content-center">
-			<div class="card" id="player2Beast2">
-				<img class="card-img-top" id="player2Beast2Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP2B2" type="number" min="0" max="99" /> / <input id="maxHpP2B2"
-							type="number" min="0" max="99" />
+
+		<div id="player2">
+			<div class="row col-12 d-flex justify-content-center">
+				<div class="card" id="player2Beast1">
+					<img class="card-img-top mainBeastImg" id="player2Beast1Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP2B1" type="number" min="0" max="99" /> / <input id="maxHpP2B1"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP2B1" type="number" min="0" max="99" /> / <input id="maxPrsP2B1"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP2B1" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP2B1" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP2B1" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP2B1')">ATK</button><button
+								onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button></div>
 					</div>
-					<div>
-						PRS: <input id="currentPrsP2B2" type="number" min="0" max="99" /> / <input id="maxPrsP2B2"
-							type="number" min="0" max="99" />
-					</div>
-					<div>
-						ATK: <input id="currentAtkP2B2" type="number" min="0" max="99" />
-					</div>
-					<div>
-						DEF: <input id="currentDefP2B2" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP2B2" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP2B2')">ATK</button><button
-							onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button></div>
 				</div>
 			</div>
-			<div class="card" id="player2Beast3">
-				<img class="card-img-top" id="player2Beast3Img" src="" />
-				<div class="card-body">
-					<div>
-						HP: <input id="currentHpP2B3" type="number" min="0" max="99" /> / <input id="maxHpP2B3"
-							type="number" min="0" max="99" />
+			<div class="row col-12 d-flex justify-content-center">
+				<div class="card" id="player2Beast2">
+					<img class="card-img-top mainBeastImg" id="player2Beast2Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP2B2" type="number" min="0" max="99" /> / <input id="maxHpP2B2"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP2B2" type="number" min="0" max="99" /> / <input id="maxPrsP2B2"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP2B2" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP2B2" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP2B2" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP2B2')">ATK</button><button
+								onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button></div>
 					</div>
-					<div>
-						PRS: <input id="currentPrsP2B3" type="number" min="0" max="99" /> / <input id="maxPrsP2B3"
-							type="number" min="0" max="99" />
+				</div>
+				<div class="card" id="player2Beast3">
+					<img class="card-img-top mainBeastImg" id="player2Beast3Img" src="" />
+					<div class="card-body">
+						<div>
+							HP: <input id="currentHpP2B3" type="number" min="0" max="99" /> / <input id="maxHpP2B3"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							PRS: <input id="currentPrsP2B3" type="number" min="0" max="99" /> / <input id="maxPrsP2B3"
+								type="number" min="0" max="99" />
+						</div>
+						<div>
+							ATK: <input id="currentAtkP2B3" type="number" min="0" max="99" />
+						</div>
+						<div>
+							DEF: <input id="currentDefP2B3" type="number" min="0" max="99" />
+						</div>
+						<div>
+							SPD: <input id="currentSpdP2B3" type="number" min="0" max="99" />
+						</div>
+						<div><button onclick="setAtk('currentAtkP2B3')">ATK</button><button
+								onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button></div>
 					</div>
-					<div>
-						ATK: <input id="currentAtkP2B3" type="number" min="0" max="99" />
-					</div>
-					<div>
-						DEF: <input id="currentDefP2B3" type="number" min="0" max="99" />
-					</div>
-					<div>
-						SPD: <input id="currentSpdP2B3" type="number" min="0" max="99" />
-					</div>
-					<div><button onclick="setAtk('currentAtkP2B3')">ATK</button><button
-							onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button></div>
 				</div>
 			</div>
 		</div>
+
+		<div><input type="number" id="round" min="1" max="100"></div>
+		<br />
+		<div><button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span></div>
 	</div>
 
-	<div><input type="number" id="round" min="1" max="100"></div>
-	<br />
-	<div><button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span></div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io();
+	</script>
 </body>
 
 </html>

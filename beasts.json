@@ -1,4 +1,4 @@
-var DATA = [
+[
     {
         "Name": "Graveltusk",
         "Img": "./img/Graveltusk.png",
@@ -95,4 +95,4 @@ var DATA = [
         "DEF": "4",
         "SPD": "3"
     }
-];
+]
