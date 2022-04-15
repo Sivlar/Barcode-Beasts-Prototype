@@ -20,6 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="./index.css">
 
 	<!--Main Logic-->
+	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 </head>
 
@@ -37,15 +38,15 @@
 					<div class="row">
 						<div class="col text-center" id="player1Beasts">
 							<h5>Player 1 Beasts</h5>
-							<select id="player1Beast1"></select><!-- TODO Conflicting ID in other parts of the code? -->
-							<select id="player1Beast2"></select>
-							<select id="player1Beast3"></select>
+							<select id="player1Beast1Selector"></select>
+							<select id="player1Beast2Selector"></select>
+							<select id="player1Beast3Selector"></select>
 						</div>
 						<div class="col text-center" id="player2Beasts">
 							<h5>Player 2 Beasts</h5>
-							<select id="player2Beast1"></select>
-							<select id="player2Beast2"></select>
-							<select id="player2Beast3"></select>
+							<select id="player2Beast1Selector"></select>
+							<select id="player2Beast2Selector"></select>
+							<select id="player2Beast3Selector"></select>
 						</div>
 					</div>
 				</div>
@@ -93,7 +94,9 @@
 							SPD: <input id="currentSpdP1B1" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP1B1')">ATK</button><button
-								onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button></div>
+								onclick="defend('currentDefP1B1', 'currentHpP1B1')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player1Beast1')">SR</button>
+						</div>
 					</div>
 				</div>
 				<div class="card" id="player1Beast2">
@@ -117,7 +120,9 @@
 							SPD: <input id="currentSpdP1B2" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP1B2')">ATK</button><button
-								onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button></div>
+								onclick="defend('currentDefP1B2', 'currentHpP1B2')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player1Beast2')">SR</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -143,7 +148,9 @@
 							SPD: <input id="currentSpdP1B3" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP1B3')">ATK</button><button
-								onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button></div>
+								onclick="defend('currentDefP1B3', 'currentHpP1B3')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player1Beast3')">SR</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -172,7 +179,9 @@
 							SPD: <input id="currentSpdP2B1" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP2B1')">ATK</button><button
-								onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button></div>
+								onclick="defend('currentDefP2B1', 'currentHpP2B1')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player2Beast1')">SR</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -198,7 +207,9 @@
 							SPD: <input id="currentSpdP2B2" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP2B2')">ATK</button><button
-								onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button></div>
+								onclick="defend('currentDefP2B2', 'currentHpP2B2')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player2Beast2')">SR</button>
+						</div>
 					</div>
 				</div>
 				<div class="card" id="player2Beast3">
@@ -222,7 +233,9 @@
 							SPD: <input id="currentSpdP2B3" type="number" min="0" max="99" />
 						</div>
 						<div><button onclick="setAtk('currentAtkP2B3')">ATK</button><button
-								onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button></div>
+								onclick="defend('currentDefP2B3', 'currentHpP2B3')">DEF</button>
+							<button class="float-right" onclick="swapBeastRow('player2Beast3')">SR</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -232,11 +245,6 @@
 		<br />
 		<div><button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span></div>
 	</div>
-
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-		var socket = io();
-	</script>
 </body>
 
 </html>

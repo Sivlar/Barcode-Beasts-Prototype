@@ -1,6 +1,8 @@
 let beastData = getBeastData();
 var atk = 0;
 var beasts = [];
+var socket = io();
+// import { io } from "socket.io-client";
 
 function getBeastData() {
     fetch('./beasts.json')
@@ -34,6 +36,8 @@ function populateBeastSelectors() {
 function chooseRandomBeasts() {
     var selectors = document.querySelectorAll("select");
 
+    socket.emit("howdy", "Hello World");
+
     selectors.forEach(x => {
         var randNum = Math.floor(Math.random() * (x.options.length - 1) + 1);// Random number between 1 and the number of selectable Beasts.
         x.options.selectedIndex = randNum;
@@ -42,12 +46,12 @@ function chooseRandomBeasts() {
 
 function mapBeastsToElementsByName() {
     const arrOfNames = [
-        document.querySelector('#player1Beast1').value,
-        document.querySelector('#player1Beast2').value,
-        document.querySelector('#player1Beast3').value,
-        document.querySelector('#player2Beast1').value,
-        document.querySelector('#player2Beast2').value,
-        document.querySelector('#player2Beast3').value
+        document.querySelector('#player1Beast1Selector').value,
+        document.querySelector('#player1Beast2Selector').value,
+        document.querySelector('#player1Beast3Selector').value,
+        document.querySelector('#player2Beast1Selector').value,
+        document.querySelector('#player2Beast2Selector').value,
+        document.querySelector('#player2Beast3Selector').value
     ];
     var currentBeast;
 
@@ -175,6 +179,17 @@ function defend(defElemId, currHpElemId) {
     console.log("Damage: " + damage + " (rounded to " + damageRounded + ")");
 
     hpElem.value -= damageRounded;
+}
+
+function swapBeastRow(cardElemId) {
+    let cardElem = document.querySelector('#' + cardElemId);
+
+    let currRow = cardElem.parentElement;
+    let currRowIndex = Array.prototype.indexOf.call(currRow.parentElement.children, currRow);
+
+    let newRowIndex = currRowIndex === 0 ? 1 : 0;
+
+    currRow.parentElement.children[newRowIndex].appendChild(cardElem);
 }
 
 function flipCoin() {
