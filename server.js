@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
 io.on('connection', (client) => {
     console.log(client.id + ' connected');
 
+    // client.join("room-" + client.id);
+    // console.log("You are in room: " + "room-" + client.id);
+
     client.on('chat message', (msg) => {
         io.emit('chat message', msg);
     });
@@ -23,6 +26,10 @@ io.on('connection', (client) => {
     client.on('disconnect', () => {
         console.log(client.id + ' disconnected');
     });
+});
+
+io.on('howdy', client => {
+    console.log("test triggered");
 });
 
 server.listen(port, () => {

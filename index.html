@@ -60,13 +60,35 @@
 		</div>
 	</div>
 
+	<div id="turnTrackerHelper">
+		<img id="tth0" src="" />
+		<!--./img/turnArrow.png-->
+		<img id="tth1" src="" />
+		<img id="tth2" src="" />
+		<img id="tth3" src="" />
+		<img id="tth4" src="" />
+		<img id="tth5" src="" />
+	</div>
+
 	<div id="turnTracker">
-		<img id="beast0" onmouseover="highlightBeast()" onmouseout="removeHightlight()" data-id="test1"></img>
-		<img id="beast1" onmouseover="" onmouseout=""></img>
-		<img id="beast2" onmouseover="" onmouseout=""></img>
-		<img id="beast3" onmouseover="" onmouseout=""></img>
-		<img id="beast4" onmouseover="" onmouseout=""></img>
-		<img id="beast5" onmouseover="" onmouseout=""></img>
+		<!-- tt stands for turn tracker -->
+		<img id="p1b1tt" src="" onmouseover="highlightBeast('player1Beast1')"
+			onmouseout="removeHightlightBeast('player1Beast1')"></img>
+		<img id="p1b2tt" src="" onmouseover="highlightBeast('player1Beast2')"
+			onmouseout="removeHightlightBeast('player1Beast2')"></img>
+		<img id="p1b3tt" src="" onmouseover="highlightBeast('player1Beast3')"
+			onmouseout="removeHightlightBeast('player1Beast3')"></img>
+		<img id="p2b1tt" src="" onmouseover="highlightBeast('player2Beast1')"
+			onmouseout="removeHightlightBeast('player2Beast1')"></img>
+		<img id="p2b2tt" src="" onmouseover="highlightBeast('player2Beast2')"
+			onmouseout="removeHightlightBeast('player2Beast2')"></img>
+		<img id="p2b3tt" src="" onmouseover="highlightBeast('player2Beast3')"
+			onmouseout="removeHightlightBeast('player2Beast3')"></img>
+
+		<button id="nextTurnBtn" type="button" onclick="setTurnInd()">Next Turn</button><br /><br />
+		<button id="calcTurnsBtn" type="button" onclick="determineTurnOrderForRound()">Recalc Order</button><br /><br />
+		<label id="roundLbl">Round:</label><input type="number" id="round" min="1" max="100"><br /><br />
+		<div style="display: none"><button onclick="flipCoin()">Flip Coin</button><span id="coinResult"></span></div>
 	</div>
 
 	<!-- Game Board -->
@@ -156,6 +178,8 @@
 			</div>
 		</div>
 
+		<br>
+
 		<div id="player2">
 			<div class="row col-12 d-flex justify-content-center">
 				<div class="card" id="player2Beast1">
@@ -240,10 +264,6 @@
 				</div>
 			</div>
 		</div>
-
-		<div><input type="number" id="round" min="1" max="100"></div>
-		<br />
-		<div><button onclick="flipCoin()">Flip Coin</button> <span id="coinResult"></span></div>
 	</div>
 </body>
 
