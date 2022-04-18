@@ -44,9 +44,31 @@
     visibility: hidden;
 }
 
+#moveReader {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 130px;
+    /* right: 0; */
+    overflow: hidden;
+    text-align: center;
+    background-color: rgb(160, 160, 160);
+    border-left: solid;
+}
+
+.beastKitBox {
+    margin: 15px 5px;
+    background-color: lightgray;
+    border: solid black;
+}
+
 #main {
     /* Same as the width of the turn tracker */
-    margin-left: 130px;
+    margin-left: 390px;
+    /* was 130px */
+    /* Same as the width of the move reader */
+    /* margin-right: 260px; */
 }
 
 img.mainBeastImg {

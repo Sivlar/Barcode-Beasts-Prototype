@@ -58,73 +58,103 @@ function mapBeastsToElementsByName() {
 
     for (let i = 0; i <= 5; i++) {
         currentBeast = beastData.find(x => x.Name === arrOfNames[i]);
-        let img, maxHp, currentHp, currentPrs, maxPrs, atk, def, spd, ttImg;//ttImg = turn tracker image
+        let img, maxHp, currentHp, currentPrs, maxPrs, atk, def, spd, passive, ability1, ability2, ability3, ultimate, ttImg;//ttImg = turn tracker image
 
         switch (i) {
             case 0:
                 img = document.querySelector('#player1Beast3Img');
-                maxHp = document.querySelector('#maxHpP1B3')
+                maxHp = document.querySelector('#maxHpP1B3');
                 currentHp = document.querySelector('#currentHpP1B3');
                 currentPrs = document.querySelector('#currentPrsP1B3');
                 maxPrs = document.querySelector('#maxPrsP1B3');
                 atk = document.querySelector('#currentAtkP1B3');
                 def = document.querySelector('#currentDefP1B3');
                 spd = document.querySelector('#currentSpdP1B3');
+                passive = document.querySelector('#player1Beast3').dataset.passive = currentBeast.Passive;
+                ability1 = document.querySelector('#player1Beast3').dataset.ability1 = currentBeast.Ability1;
+                ability2 = document.querySelector('#player1Beast3').dataset.ability2 = currentBeast.Ability2;
+                ability3 = document.querySelector('#player1Beast3').dataset.ability3 = currentBeast.Ability3;
+                ultimate = document.querySelector('#player1Beast3').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p1b3tt');
                 break;
             case 1:
                 img = document.querySelector('#player1Beast2Img');
-                maxHp = document.querySelector('#maxHpP1B2')
+                maxHp = document.querySelector('#maxHpP1B2');
                 currentHp = document.querySelector('#currentHpP1B2');
                 currentPrs = document.querySelector('#currentPrsP1B2');
                 maxPrs = document.querySelector('#maxPrsP1B2');
                 atk = document.querySelector('#currentAtkP1B2');
                 def = document.querySelector('#currentDefP1B2');
                 spd = document.querySelector('#currentSpdP1B2');
+                passive = document.querySelector('#player1Beast2').dataset.passive = currentBeast.Passive;
+                ability1 = document.querySelector('#player1Beast2').dataset.ability1 = currentBeast.Ability1;
+                ability2 = document.querySelector('#player1Beast2').dataset.ability2 = currentBeast.Ability2;
+                ability3 = document.querySelector('#player1Beast2').dataset.ability3 = currentBeast.Ability3;
+                ultimate = document.querySelector('#player1Beast2').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p1b2tt');
                 break;
             case 2:
                 img = document.querySelector('#player1Beast1Img');
-                maxHp = document.querySelector('#maxHpP1B1')
+                maxHp = document.querySelector('#maxHpP1B1');
                 currentHp = document.querySelector('#currentHpP1B1');
                 currentPrs = document.querySelector('#currentPrsP1B1');
                 maxPrs = document.querySelector('#maxPrsP1B1');
                 atk = document.querySelector('#currentAtkP1B1');
                 def = document.querySelector('#currentDefP1B1');
                 spd = document.querySelector('#currentSpdP1B1');
+                passive = document.querySelector('#player1Beast1').dataset.passive = currentBeast.Passive;
+                ability1 = document.querySelector('#player1Beast1').dataset.ability1 = currentBeast.Ability1;
+                ability2 = document.querySelector('#player1Beast1').dataset.ability2 = currentBeast.Ability2;
+                ability3 = document.querySelector('#player1Beast1').dataset.ability3 = currentBeast.Ability3;
+                ultimate = document.querySelector('#player1Beast1').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p1b1tt');
                 break;
             case 3:
                 img = document.querySelector('#player2Beast1Img');
-                maxHp = document.querySelector('#maxHpP2B1')
+                maxHp = document.querySelector('#maxHpP2B1');
                 currentHp = document.querySelector('#currentHpP2B1');
                 currentPrs = document.querySelector('#currentPrsP2B1');
                 maxPrs = document.querySelector('#maxPrsP2B1');
                 atk = document.querySelector('#currentAtkP2B1');
                 def = document.querySelector('#currentDefP2B1');
                 spd = document.querySelector('#currentSpdP2B1');
+                passive = document.querySelector('#player2Beast1').dataset.passive = currentBeast.Passive;
+                ability1 = document.querySelector('#player2Beast1').dataset.ability1 = currentBeast.Ability1;
+                ability2 = document.querySelector('#player2Beast1').dataset.ability2 = currentBeast.Ability2;
+                ability3 = document.querySelector('#player2Beast1').dataset.ability3 = currentBeast.Ability3;
+                ultimate = document.querySelector('#player2Beast1').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p2b1tt');
                 break;
             case 4:
                 img = document.querySelector('#player2Beast2Img');
-                maxHp = document.querySelector('#maxHpP2B2')
+                maxHp = document.querySelector('#maxHpP2B2');
                 currentHp = document.querySelector('#currentHpP2B2');
                 currentPrs = document.querySelector('#currentPrsP2B2');
                 maxPrs = document.querySelector('#maxPrsP2B2');
                 atk = document.querySelector('#currentAtkP2B2');
                 def = document.querySelector('#currentDefP2B2');
                 spd = document.querySelector('#currentSpdP2B2');
+                passive = document.querySelector('#player2Beast2').dataset.passive = currentBeast.Passive;
+                ability1 = document.querySelector('#player2Beast2').dataset.ability1 = currentBeast.Ability1;
+                ability2 = document.querySelector('#player2Beast2').dataset.ability2 = currentBeast.Ability2;
+                ability3 = document.querySelector('#player2Beast2').dataset.ability3 = currentBeast.Ability3;
+                ultimate = document.querySelector('#player2Beast2').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p2b2tt');
                 break;
             case 5:
                 img = document.querySelector('#player2Beast3Img');
-                maxHp = document.querySelector('#maxHpP2B3')
+                maxHp = document.querySelector('#maxHpP2B3');
                 currentHp = document.querySelector('#currentHpP2B3');
                 currentPrs = document.querySelector('#currentPrsP2B3');
                 maxPrs = document.querySelector('#maxPrsP2B3');
                 atk = document.querySelector('#currentAtkP2B3');
                 def = document.querySelector('#currentDefP2B3');
                 spd = document.querySelector('#currentSpdP2B3');
+                document.querySelector('#player2Beast3').dataset.passive = currentBeast.Passive;
+                document.querySelector('#player2Beast3').dataset.ability1 = currentBeast.Ability1;
+                document.querySelector('#player2Beast3').dataset.ability2 = currentBeast.Ability2;
+                document.querySelector('#player2Beast3').dataset.ability3 = currentBeast.Ability3;
+                document.querySelector('#player2Beast3').dataset.ultimate = currentBeast.Ultimate;
                 ttImg = document.querySelector('#p2b3tt');
                 break;
             default:
@@ -147,7 +177,7 @@ function startGame() {
     startTurnTracker();
 }
 
-function startTurnTracker() {// Write unit tests.
+function startTurnTracker() {
     document.querySelector('#round').value = 1;// Start at round 1.
     determineTurnOrderForRound();
     initTurnControls();
@@ -170,6 +200,7 @@ function setTurnInd() {
     if (turn > 5) {
         turn = 0;// Start over at the beginning.
         document.querySelector('#round').value++;
+        determineTurnOrderForRound();
     }
 
     let indexToClean;
@@ -177,8 +208,11 @@ function setTurnInd() {
     else indexToClean = 5;
 
     document.querySelector('#tth' + indexToClean).src = "";
-
     document.querySelector('#tth' + turn).src = "./img/turnArrow.png";
+
+    setMoveReader(turn);
+
+    if (round.value !== 1 && turn !== 0) document.querySelector('#calcTurnsBtn').style.display = "none";
 }
 
 function determineTurnOrderForRound() {
@@ -240,6 +274,34 @@ function determineTurnOrderForRound() {
     //console.log(ttArr);
 }
 
+function recalcTurns() {
+    determineTurnOrderForRound();
+    setMoveReader(0);
+}
+
+function setMoveReader(ttIndex) {
+    let currentBeastId = document.querySelector('#turnTracker').children[ttIndex].dataset.beastId;
+    let currentBeast = document.querySelector('#' + currentBeastId);
+
+    let passiveText = currentBeast.dataset.passive;
+    let ability1Text = currentBeast.dataset.ability1;
+    let ability2Text = currentBeast.dataset.ability2;
+    let ability3Text = currentBeast.dataset.ability3;
+    let ultimateText = currentBeast.dataset.ultimate;
+
+    const passiveElem = document.querySelector('#passiveText');
+    const ability1Elem = document.querySelector('#ability1Text');
+    const ability2Elem = document.querySelector('#ability2Text');
+    const ability3Elem = document.querySelector('#ability3Text');
+    const ultimateElem = document.querySelector('#ultimateText');
+
+    passiveElem.innerHTML = passiveText;
+    ability1Elem.innerHTML = ability1Text;
+    ability2Elem.innerHTML = ability2Text;
+    ability3Elem.innerHTML = ability3Text;
+    ultimateElem.innerHTML = ultimateText;
+}
+
 function setAtk(atkElemId) {
     atk = document.querySelector('#' + atkElemId).value;
     console.log("Attack Set: " + atk);
@@ -283,6 +345,10 @@ function highlightBeast(cardElemId) {
     // Set highlight style.
     cardElem.style.transition = "background 1s";
     cardElem.style.backgroundColor = "#FDFF47";
+
+    console.log(cardElem.children[0].style.content);
+    cardElem.children[0].style.content = "TestTestTest";
+    console.log(cardElem.children[0].style.content);
 }
 
 function removeHightlightBeast(cardElemId) {

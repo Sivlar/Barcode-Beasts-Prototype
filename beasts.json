@@ -2,10 +2,15 @@
     {
         "Name": "Graveltusk",
         "Img": "./img/Graveltusk.png",
-        "HP": "17",
+        "HP": "14",
         "ATK": "6",
         "DEF": "3",
-        "SPD": "1"
+        "SPD": "1",
+        "Passive": "Whenever Graveltusk deals damage to a Beast, gain 1 SPD",
+        "Ability1": "Charge: Attack a Beast and apply Pressure equal to SPD",
+        "Ability2": "Gore: Apply the Bleeding Debuff (33% of ATK as damage per turn) for 2 turns",
+        "Ability3": "Rampage: When using this ability, gain an additional +1 ATK for each turn in a row that this move has been used; Attack a Beast",
+        "Ultimate": "Stampede (5/4): Select a Beast and have all Packmates attack it (can target Beasts on the back row)"
     },
     {
         "Name": "Granolafly",
@@ -13,15 +18,25 @@
         "HP": "10",
         "ATK": "3",
         "DEF": "2",
-        "SPD": "3"
+        "SPD": "3",
+        "Passive": "Silk Armor: Gain +1 DEF each time Granolafly takes damage",
+        "Ability1": "Drain: Attack a Beast, then heal a Beast for the same amount of damage dealt",
+        "Ability2": "Remove 2 Pressure from a Beast; Gain Advantage",
+        "Ability3": "Give a Beast +1 ATK",
+        "Ultimate": "Nature's Grace (4/3): Give a Beast +3 ATK, +3 DEF until EoNT; heal 5 HP, remove all Debuffs, and remove 4 Pressure"
     },
     {
         "Name": "EarthTank",
         "Img": "./img/EarthTank.jpg",
-        "HP": "23",
+        "HP": "20",
         "ATK": "4",
-        "DEF": "5",
-        "SPD": "1"
+        "DEF": "4",
+        "SPD": "1",
+        "Passive": "Thorns (1 damage, ignoring DEF, to any Beast that uses an ability on EarthTank)",
+        "Ability1": "Attack a Beast and apply 3 Pressure, 4 if that Beast has a Debuff",
+        "Ability2": "Reinforce: Give self the Fortified Buff (+1 DEF and -1 Pressure from all sources) until EoNT; Gain Advantage",
+        "Ability3": "Select a Beast; until EoNT, all attacks directed at that Beast are instead made to EarthTank",
+        "Ultimate": "(4/4) Give a Beast the Stunned Debuff (they skip their next turn)"
     },
     {
         "Name": "Wriggler",
@@ -29,70 +44,115 @@
         "HP": "10",
         "ATK": "10",
         "DEF": "1",
-        "SPD": "5"
+        "SPD": "5",
+        "Passive": "Start the battle with the Charged Buff; Get the Charged Buff when any Beast dies (including Packmates)",
+        "Ability1": "Fireball: Attack a Beast; can only be used when Wriggler has the Charged Buff",
+        "Ability2": "Give self the Charged Buff and -3 SPD until EoNT",
+        "Ability3": "Give self the Charged Buff and set DEF equal to 0 until EoNT",
+        "Ultimate": "(4/4) Attack all enemy Beasts"
     },
     {
         "Name": "FireSupport",
         "Img": "./img/FireSupport.jpg",
-        "HP": "16",
+        "HP": "12",
         "ATK": "3",
         "DEF": "2",
-        "SPD": "3"
+        "SPD": "3",
+        "Passive": "If FireSupport has the Burned Debuff, all abilities apply 2 times in a row",
+        "Ability1": "Attack a Beast and give it the Primed Debuff (next damage against this Beast is doubled and Primed is removed)",
+        "Ability2": "Give a Beast the Burned Debuff (-2 HP per turn and can't be healed) for 2 turns",
+        "Ability3": "Deal 1 damage to a Beast (ignoring DEF) and that Beast gains +1 ATK",
+        "Ultimate": "(3/0) Deal 300% ATK damage to a Beast; can only use if user is at 1 HP; user dies after using this ability"
     },
     {
         "Name": "MoltenMenace",
         "Img": "./img/MoltenMenace.png",
-        "HP": "18",
+        "HP": "15",
         "ATK": "3",
         "DEF": "3",
-        "SPD": "2"
+        "SPD": "2",
+        "Passive": "Has double DEF while being attacked by Beasts with more Pressure than Molten Menace",
+        "Ability1": "Attack a Beast and apply 2 Pressure",
+        "Ability2": "Convert a Beast's Pressure to direct damage (ignoring DEF)",
+        "Ability3": "Absorb 1 Pressure from all Beasts; Gain Advantage",
+        "Ultimate": "(3/3) Give all enemy Beasts the same amount of Pressure that the user currently has, then remove all Pressure from self"
     },
     {
         "Name": "Illuminator",
         "Img": "./img/Illuminator.png",
-        "HP": "13",
-        "ATK": "6",
+        "HP": "11",
+        "ATK": "5",
         "DEF": "3",
-        "SPD": "3"
+        "SPD": "3",
+        "Passive": "Exploit Weakness: Add 1 Pressure and remove 1 DEF from any Beast affected by Illuminator's abilities",
+        "Ability1": "Attack a Beast, then attack a Beast again",
+        "Ability2": "Flank: Give any Beast the Flanked Debuff (can be attacked on the back row without using Advantage); Gain Advantage",
+        "Ability3": "Amnesia Blast: Select and disable an ability of a Beast until the end of their next turn",
+        "Ultimate": "(4/4) Force any enemy Beast to use a basic ability of your choice on any target you want"
     },
     {
         "Name": "Optopus",
         "Img": "./img/Optopus.png",
-        "HP": "16",
+        "HP": "13",
         "ATK": "3",
         "DEF": "3",
-        "SPD": "3"
+        "SPD": "3",
+        "Passive": "Start the battle with Advantage and Optopus takes a free turn before the first round starts",
+        "Ability1": "Attack a Beast and give it the Weakened Debuff (-2 ATK) until the end of its next turn",
+        "Ability2": "Hydromancy: Choose an ability that a Beast will be forced to use next turn; that Beast still chooses the targets and/or other details of the ability; Gain Advantage",
+        "Ability3": "Transfer 2 Pressure from one Beast to another; Gain Advantage",
+        "Ultimate": "(7/4) Select a Packmember to take a turn immediately; it can use its ultimate during this free turn"
     },
     {
-        "Name": "Silverfin",
-        "Img": "./img/Silverfin.png",
-        "HP": "22",
+        "Name": "Seascale",
+        "Img": "./img/Seascale.png",
+        "HP": "19",
         "ATK": "4",
         "DEF": "3",
-        "SPD": "3"
+        "SPD": "3",
+        "Passive": "Take 1 less Pressure from all sources and instead convert it to 1 HP; this can result in 0 Pressure being taken from a source",
+        "Ability1": "Attack a Beast and give it the Filtered Debuff (the next Buff recieved is negated, or the next Debuff delivered is negated)",
+        "Ability2": "Give all Beasts 1 Pressure; Gain Advantage",
+        "Ability3": "Shed Scales: Remove all Debuffs; Gain 2 HP and 1 ATK if any Debuffs were removed; Apply only to self",
+        "Ultimate": "(2/2) Tidal Wave: Apply the Frail Debuff to all enemies and reduce their SPD to 1 until the end of their next turn"
     },
     {
         "Name": "Winja",
         "Img": "./img/Winja.png",
-        "HP": "13",
+        "HP": "11",
         "ATK": "7",
         "DEF": "2",
-        "SPD": "5"
+        "SPD": "5",
+        "Passive": "50% of damage dealt is removed from the targets max HP",
+        "Ability1": "Attack a Beast; this ability can target the back row without Advantage if Winja is on the front row",
+        "Ability2": "Attack a Beast; apply 3 Pressure if used from the back row",
+        "Ability3": "Smoke Bomb: Change rows; Gain Advantage",
+        "Ultimate": "(8/4) Mark an enemy for death; their ATK is doubled until their next turn ends, at which point they die"
     },
     {
         "Name": "Bellowsoar",
         "Img": "./img/Bellowsoar.png",
-        "HP": "14",
+        "HP": "11",
         "ATK": "2",
         "DEF": "2",
-        "SPD": "4"
+        "SPD": "4",
+        "Passive": "Draft: All Packmembers get +1 SPD",
+        "Ability1": "Divebomb: Attack a Beast and give it the Dazed Debuff (-3 SPD) until the end of its next turn",
+        "Ability2": "Give a Beast the Quickened Buff (+3 SPD) until the end of its next turn and heal 2 HP",
+        "Ability3": "Swap the position of two Beasts in the same Pack",
+        "Ultimate": "(4/4) Choose a Packmate and an enemy Beast; both can only target each other and can not be targeted by any other Beast for 3 turns"
     },
     {
         "Name": "BlindingBeetle",
         "Img": "./img/BlindingBeetle.png",
-        "HP": "20",
+        "HP": "17",
         "ATK": "4",
-        "DEF": "4",
-        "SPD": "3"
+        "DEF": "3",
+        "SPD": "3",
+        "Passive": "Beasts on the same row as Blinding Beetle take 1 less damage from all sources and heal for 1 HP per turn on their turn",
+        "Ability1": "Attack a Beast and apply the Frail Debuff (each time this Beast takes damage they take 2 additional direct damage) until the end of the user's next turn",
+        "Ability2": "Apply 80% of user SPD as Pressure to a Beast",
+        "Ability3": "Give self the Prepared Buff (+2 DEF until damage is received, at which point gain 3 SPD and lose the buff) until EoNT; Gain Advantage",
+        "Ultimate": "(4/6) Heal all ally Beasts for 40% of the total SPD of the Pack"
     }
 ]
